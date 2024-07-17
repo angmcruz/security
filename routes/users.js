@@ -7,7 +7,7 @@ var router = express.Router();
 // });
 
 
-//TEMA
+//TEMA EX
 
 // porque no pueden estar los 2 ?
 // el servidor no sabe cual elegir ya que tienen la 
