@@ -67,7 +67,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <!-- 5. Arreglo de usuarios -->
+                        <!-- 5. Arreglo de usuarios SERA ACA ?? -->
                         <tbody>
                             <% usersArray.forEach( user => { %>
                             <tr>
@@ -80,7 +80,7 @@
                                 </td>
                                 <td> <%= user.iduser %> </td>
                                 <td> <%= user.name %> </td>
-                                <td> XX</td>
+                                <td> <%= user.users_roles.roles_idrole_role.name %> </td>
                                 <td>
                                     <a href="#editEmployeeModal" class="edit"
                                     <a href="#editEmployeeModal" class="edit"
@@ -147,7 +147,9 @@
                             </div>
                             <div class="form-group">
                                 <label>Role</label>
-                                <!-- 6. Arreglo de roles -->
+                                <!-- 6. Arreglo de roles  NO SE SI LA VAINA ES AQUI
+                                 AYUDA -->
+                                 
                                 <select name="idrole" class="form-control">
                                     <option value="null" selected disabled class="form-control">Select an item</option>
                                     <% rolesArray.forEach( role => { %> 
