@@ -8,6 +8,7 @@ var router = express.Router();
  /* 1. Cargue los modelos de acuerdo con la configuración de la conexión */
  const sequelize = require('../models/index.js').sequelize;
  var initModels = require("../models/init-models");
+const { error } = require('console');
  var models = initModels( sequelize );  
 
 
@@ -56,21 +57,26 @@ var router = express.Router();
   try {
 
     /* 4. Utilice la variable SALT para encriptar la variable password. */
-    let salt = process.env.SALT
-    let hash = crypto.createHmac('sha512', salt).update(password).digest("base64");
-    let passwordHash = salt + "$" + hash
+    // let salt = process.env.SALT
+    // let hash = crypto.createHmac('sha512', salt).update(password).digest("base64");
+    // let passwordHash = salt + "$" + hash
 
     /* 5. Guarde el registro mediante el método create */
-    let user = await models.users.create({ name: name, password: passwordHash })
+    let pass = "prueba"
+    //let user = await models.users.create({ name: name, password: pass })
+   
+   
     /* 5.1. Utilice el model.user_roles para crear la relación ( user.iduser , idrole) */
-    let idrole = await models.users_roles.create({ users_iduser: user.iduser, roles_idrole: idrole })
-    
+    let user = 
+    await models.users.create({ name: name, password: pass })
+    await models.users_roles.create({ users_iduser: user.iduser, roles_idrole: idrole })
+   
     debugger;
     /* 6. Redireccione a la ruta con la vista principal '/users' */
     res.redirect('/users')
 
   } catch (error) {
-
+    console.log(error);
     res.status(400).send(error)
 
   }
