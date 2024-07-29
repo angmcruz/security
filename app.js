@@ -9,6 +9,7 @@ var logger = require('morgan');
  /* 1. Módulo express-session */
 const session = require('express-session');
 var authenticateSession = require('./middleware/authentication_session');
+var authorizationSession = require('./middleware/authorization_session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -35,8 +36,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
+
  /* 2. Agregue el middleware al router */
- app.use('/users', authenticateSession, usersRouter);
+ app.use('/users', authenticateSession,authorizationSession, usersRouter);
 
 
 
