@@ -40,9 +40,6 @@ app.use('/', indexRouter);
  /* 2. Agregue el middleware al router */
  app.use('/users', authenticateSession,authorizationSession, usersRouter);
 
-
-
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
