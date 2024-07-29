@@ -33,12 +33,14 @@ router.post('/login', async function (req, res, next) {
       if (userData != null && userData.password != null) {
 
         /* 8. Divida userData.password por el símbolo "$", y use el primer elemento como SALT. */
-        // let salt = userData.password.split("$")[0]
-        // let hash = crypto.createHmac('sha512', salt).update(password).digest("base64");
-        // let passwordHash = salt + "$" + hash
-        let pass = "prueba";
+        let salt = userData.password.split("$")[0]
+        let hash = crypto.createHmac('sha512', salt).update(password).digest("base64");
+        let passwordhash = salt + "$" + hash
+
+
+        //let pass = "prueba";
         /* 9. Compare passwordHash y userData.password que sean iguales. */
-        if (pass === userData.password) {
+        if (passwordhash === userData.password) {
           /* 10. En caso de éxito, redirija a '/users' */
           res.redirect('/users');
         } else {
@@ -51,6 +53,7 @@ router.post('/login', async function (req, res, next) {
 
     } catch (error) {
       /* 12. En caso de error, retorne el estado 400 y el objeto error */
+      console.log(error)
       res.status(400).send(error)
     }
   } else {

@@ -57,18 +57,19 @@ const { error } = require('console');
   try {
 
     /* 4. Utilice la variable SALT para encriptar la variable password. */
-    // let salt = process.env.SALT
-    // let hash = crypto.createHmac('sha512', salt).update(password).digest("base64");
-    // let passwordHash = salt + "$" + hash
+    let salt = process.env.SALT
+    let hash = crypto.createHmac('sha512', salt).update(password).digest("base64");
+    let passwordhash = salt + "$" + hash
+    
 
     /* 5. Guarde el registro mediante el método create */
-    let pass = "prueba"
+    // let pass = "prueba"
     //let user = await models.users.create({ name: name, password: pass })
    
    
     /* 5.1. Utilice el model.user_roles para crear la relación ( user.iduser , idrole) */
     let user = 
-    await models.users.create({ name: name, password: pass })
+    await models.users.create({ name: name, password: passwordhash })
     await models.users_roles.create({ users_iduser: user.iduser, roles_idrole: idrole })
    
     debugger;
