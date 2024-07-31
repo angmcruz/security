@@ -61,6 +61,7 @@ router.post('/login', async function (req, res, next) {
             
              /* 2. Agregue el rol del usuario en la sesión */
             req.session.role = userData.users_roles.roles_idrole_role.name
+            console.log("rol es",req.session.role)
 
           /* 10. En caso de éxito, redirija a '/users' */
           res.redirect('/users');

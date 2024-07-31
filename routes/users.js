@@ -43,8 +43,13 @@ const { error } = require('console');
   let rolesCollection = await models.roles.findAll({})
 
   /* 4. Paso de parámetros a la vista */
-  res.render('crud', {username: req.cookies['username'] ,title: 'CRUD with users', usersArray: usersCollection, rolesArray:rolesCollection } );
+  if(req.session.role === 'admin') {
+    res.render('crud', {username: req.cookies['username'] ,title: 'CRUD with users', usersArray: usersCollection, rolesArray:rolesCollection } );
+  } else {
+    res.render('token/ticket',{username: req.cookies['username']});
+  }
 
+  
 });
 
  /* POST user. */
